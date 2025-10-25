@@ -1,0 +1,6 @@
+.text-type{display:inline-flex;align-items:center}
+.text-type__content{white-space:pre;font-variant-ligatures: none}
+.text-type__cursor{display:inline-block;margin-left:8px;color:var(--fg);opacity:1}
+.text-type__cursor--hidden{opacity:0}
+
+.text-type__content::selection{background:rgba(255,255,255,0.08)}
