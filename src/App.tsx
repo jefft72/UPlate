@@ -44,13 +44,13 @@ export default function App() {
             </div>
             <div className="reveal-paragraphs">
               <ScrollReveal scrollContainerRef={pagesRef}>
-                UPlate helps you plan dining hall meals quickly so you can spend less time deciding and more time enjoying your day.
+                UPlate helps you plan college specific dining hall meals quickly. Gone are the meal prepping apps where you're left guessing your serving sizes or macros of generic foods — find your specific dining hall macros.
               </ScrollReveal>
               <ScrollReveal scrollContainerRef={pagesRef}>
-                Build a week of balanced plates, track portions, and discover new combos that fit your goals and your schedule.
+                With UPlate, you can set fine tuned goals customized to your goals, track portions, macros, and discover new combos to be the best version of you.
               </ScrollReveal>
               <ScrollReveal scrollContainerRef={pagesRef}>
-                Share favorites with friends, save time in line, and stay consistent without overthinking every meal.
+                Save your favorite foods, easily filter out dietary restrictions, and stay consistent every meal.
               </ScrollReveal>
             </div>
           </div>
