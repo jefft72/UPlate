@@ -1,22 +1,8 @@
 # UPlate — Landing Page
 
-Minimal Vite + React + TypeScript landing page for UPlate with a typing effect.
+Vite + React + TypeScript landing page 
 
-Getting started
-
-1. Install dependencies
-
-```bash
-npm install
-```
-
-2. Start dev server
-
-```bash
-npm run dev
-```
-
-The app will run on http://localhost:3000 by default (Vite dev server).
+https://jefft72.github.io/UPlate/
 
 Notes
 
