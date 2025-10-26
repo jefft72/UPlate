@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import TextType from './components/TextType'
 import ScrollReveal from './components/ScrollReveal'
+import icon from './assets/plate_light.png'
 
 export default function App() {
   const pagesRef = useRef<HTMLDivElement>(null)
@@ -11,10 +12,10 @@ export default function App() {
         {/* Page 1: Icon + brand + three-line tagline + caption */}
         <section className="page showcase">
           <div className="showcase-inner">
-            <img src="/src/assets/plate_light.png" alt="UPlate app icon" className="app-icon" />
+            <img src={icon} alt="UPlate app icon" className="app-icon" />
 
             <div className="showcase-hero">
-              <h1 className="brand brand--centered">UPlate</h1>
+              <h1 className="brand brand--centered text-gradient soft-glow">UPlate</h1>
               <div className="hero-taglines">
                 <TextType
                   text={"Your new college meal prep buddy"}
@@ -40,7 +41,7 @@ export default function App() {
         <section className="page reveal">
           <div className="reveal-inner">
             <div className="reveal-hero">
-              <h2 className="reveal-title">Why UPlate?</h2>
+              <h2 className="reveal-title title-gradient">Why UPlate?</h2>
             </div>
             <div className="reveal-paragraphs">
               <ScrollReveal scrollContainerRef={pagesRef}>
@@ -57,20 +58,7 @@ export default function App() {
         </section>
 
         {/* Gallery pages */}
-        {/* Page 3: Gallery */}
-        <section className="page gallery">
-          <div className="gallery-inner">
-            <p className="page-caption">caption</p>
-            <div className="phones">
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-            </div>
-          </div>
-        </section>
-
-        {/* Page 4: Gallery */}
+ 
         <section className="page gallery">
           <div className="gallery-inner">
             <p className="page-caption">caption</p>
@@ -95,7 +83,30 @@ export default function App() {
           </div>
         </section>
 
-        
+        <section className="page gallery">
+          <div className="gallery-inner">
+            <p className="page-caption">caption</p>
+            <div className="phones">
+              <div className="phone">placeholder</div>
+              <div className="phone">placeholder</div>
+              <div className="phone">placeholder</div>
+              <div className="phone">placeholder</div>
+            </div>
+          </div>
+        </section>
+
+        <section className="page gallery">
+          <div className="gallery-inner">
+            <p className="page-caption">caption</p>
+            <div className="phones">
+              <div className="phone">placeholder</div>
+              <div className="phone">placeholder</div>
+              <div className="phone">placeholder</div>
+              <div className="phone">placeholder</div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </div>
   )
