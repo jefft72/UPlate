@@ -1,10 +1,38 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import TextType from './components/TextType'
 import ScrollReveal from './components/ScrollReveal'
 import icon from './assets/plate_light.png'
 
+// Collect gallery images at build time (Vite transforms these calls).
+// Drop files anywhere under `src/assets/` with these extensions and they'll be included.
+const GALLERY_LOWER = import.meta.glob('./assets/**/*.{png,jpg,jpeg,webp,svg}', { eager: true, import: 'default' }) as Record<string, string>
+const GALLERY_UPPER = import.meta.glob('./assets/**/*.{PNG,JPG,JPEG,WEBP,SVG}', { eager: true, import: 'default' }) as Record<string, string>
+const ALL_GALLERY_IMAGES: string[] = Array.from(new Set([
+  ...Object.values(GALLERY_LOWER),
+  ...Object.values(GALLERY_UPPER)
+])).sort()
+
 export default function App() {
   const pagesRef = useRef<HTMLDivElement>(null)
+  // Use the pre-collected list from the top-level glob
+  const phoneImages: string[] = ALL_GALLERY_IMAGES
+
+  // Dev-only debug: log how many images were detected
+  const isDev = (import.meta as any).env?.DEV
+  useEffect(() => {
+    if (isDev) {
+      // eslint-disable-next-line no-console
+      console.log('[Gallery] images found:', phoneImages.length, phoneImages)
+    }
+  }, [isDev, phoneImages])
+
+  const chunkArray = (arr: string[], size: number) => {
+    const res: any[] = []
+    for (let i = 0; i < arr.length; i += size) res.push(arr.slice(i, i + size))
+    return res
+  }
+
+  const pages = chunkArray(phoneImages, 4)
 
   return (
     <div className="app-root">
@@ -60,49 +88,77 @@ export default function App() {
         {/* Gallery pages */}
  
         <section className="page gallery">
+            <div className="gallery-inner">
+              <p className="page-caption">Smooth and intuitive UI</p>
+              <div className="phones">
+                {pages[0] && pages[0].length > 0 ? (
+                  pages[0].map((src: string, i: number) => (
+                    <div key={i} className="phone">
+                      <img src={src} alt={`gallery ${i + 1}`} className="phone__img" />
+                    </div>
+                  ))
+                ) : (
+                  [1, 2, 3, 4].map(i => (
+                    <div key={i} className="phone">placeholder</div>
+                  ))
+                )}
+              </div>
+            </div>
+        </section>
+
+        <section className="page gallery">
           <div className="gallery-inner">
-            <p className="page-caption">caption</p>
+            <p className="page-caption">Personalized goals and macros</p>
             <div className="phones">
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
+              {pages[1] && pages[1].length > 0 ? (
+                pages[1].map((src: string, i: number) => (
+                  <div key={i} className="phone">
+                    <img src={src} alt={`gallery ${i + 1}`} className="phone__img" />
+                  </div>
+                ))
+              ) : (
+                [1, 2, 3, 4].map(i => (
+                  <div key={i} className="phone">placeholder</div>
+                ))
+              )}
             </div>
           </div>
         </section>
 
         <section className="page gallery">
           <div className="gallery-inner">
-            <p className="page-caption">caption</p>
+            <p className="page-caption">Easily filter out dietary restrictions</p>
             <div className="phones">
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
+              {pages[2] && pages[2].length > 0 ? (
+                pages[2].map((src: string, i: number) => (
+                  <div key={i} className="phone">
+                    <img src={src} alt={`gallery ${i + 1}`} className="phone__img" />
+                  </div>
+                ))
+              ) : (
+                [1, 2, 3, 4].map(i => (
+                  <div key={i} className="phone">placeholder</div>
+                ))
+              )}
             </div>
           </div>
         </section>
 
         <section className="page gallery">
           <div className="gallery-inner">
-            <p className="page-caption">caption</p>
+            <p className="page-caption">Rank your dining courts and save your favorite foods and meals</p>
             <div className="phones">
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-            </div>
-          </div>
-        </section>
-
-        <section className="page gallery">
-          <div className="gallery-inner">
-            <p className="page-caption">caption</p>
-            <div className="phones">
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
-              <div className="phone">placeholder</div>
+              {pages[3] && pages[3].length > 0 ? (
+                pages[3].map((src: string, i: number) => (
+                  <div key={i} className="phone">
+                    <img src={src} alt={`gallery ${i + 1}`} className="phone__img" />
+                  </div>
+                ))
+              ) : (
+                [1, 2, 3, 4].map(i => (
+                  <div key={i} className="phone">placeholder</div>
+                ))
+              )}
             </div>
           </div>
         </section>
