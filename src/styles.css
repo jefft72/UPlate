@@ -126,7 +126,15 @@ body{
   .phones{grid-template-columns:repeat(3, minmax(220px, 1fr))}
 }
 @media(max-width:640px){
-  .phones{grid-template-columns:repeat(2, minmax(180px, 1fr))}
+  /* Improve readability/scroll for the "Why UPlate" page on small screens */
+  .pages{scroll-snap-type:none; height:auto; overflow-y:visible}
+  .page{min-height:auto}
+  .reveal .reveal-inner{max-height:84vh; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch}
+  .reveal-paragraphs{padding:6vh 1rem 8vh; max-width:92%}
+
+  /* De-crowd the gallery on small screens */
+  .phones{grid-template-columns:1fr; gap:1.25rem}
+  .phone{width:88vw}
 }
 
 /* Respect reduced motion preferences */

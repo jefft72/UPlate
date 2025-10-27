@@ -63,7 +63,7 @@ export default function App() {
                 <span>Test on iOS</span>
               </a>
 
-                <a className="download-btn android" href="https://play.google.com/store/apps/details?id=com.njr.boilerFuel" aria-label="Test on Android">
+                <a className="download-btn android" href="https://groups.google.com/g/hello-world-2025" aria-label="Test on Android">
                   <img src={icon} alt="App logo" className="btn-icon" />
                   <span>Test on Android</span>
                 </a>
