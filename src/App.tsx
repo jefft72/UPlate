@@ -3,8 +3,6 @@ import TextType from './components/TextType'
 import ScrollReveal from './components/ScrollReveal'
 import icon from './assets/plate_light.png'
 
-// Collect gallery images at build time (Vite transforms these calls).
-// Drop files anywhere under `src/assets/` with these extensions and they'll be included.
 const GALLERY_LOWER = import.meta.glob('./assets/**/*.{png,jpg,jpeg,webp,svg}', { eager: true, import: 'default' }) as Record<string, string>
 const GALLERY_UPPER = import.meta.glob('./assets/**/*.{PNG,JPG,JPEG,WEBP,SVG}', { eager: true, import: 'default' }) as Record<string, string>
 const ALL_GALLERY_IMAGES: string[] = Array.from(new Set([
@@ -14,7 +12,6 @@ const ALL_GALLERY_IMAGES: string[] = Array.from(new Set([
 
 export default function App() {
   const pagesRef = useRef<HTMLDivElement>(null)
-  // Use the pre-collected list from the top-level glob
   const phoneImages: string[] = ALL_GALLERY_IMAGES
 
   // Dev-only debug: log how many images were detected
@@ -60,6 +57,23 @@ export default function App() {
             </div>
 
             <p className="app-caption">A smarter way to plan meals in the dining hall</p>
+            <div className="download-buttons">
+              <a className="download-btn ios" href="https://testflight.apple.com/join/ENwzn4CK" aria-label="Test on iOS">
+                <img src={icon} alt="App logo" className="btn-icon" />
+                <span>Test on iOS</span>
+              </a>
+
+              <a className="download-btn android" href="https://play.google.com/store/apps/details?id=com.njr.boilerFuel" aria-label="Test on Android">
+                <svg className="btn-icon android-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                  <path d="M17.6 9.48l1.43-2.48a1 1 0 0 0-.36-1.33l-1.06-.61a.99.99 0 0 0-1.33.36L15.7 7" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M6.4 9.48L4.97 6.99A1 1 0 0 0 4.61 5.66L3.55 6.27A1 1 0 0 0 3.9 7.6L5.3 9.48" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  <rect x="4" y="9" width="16" height="9" rx="2" stroke="currentColor" strokeWidth="1.2"/>
+                  <path d="M9 4.5v1.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                  <path d="M15 4.5v1.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+                </svg>
+                <span>Test on Android</span>
+              </a>
+            </div>
           </div>
         </section>
 
