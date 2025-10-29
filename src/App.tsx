@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import TextType from './components/TextType'
 import ScrollReveal from './components/ScrollReveal'
+import DarkVeil from './components/DarkVeil'
 import icon from './assets/plate_light.png'
 
 const GALLERY_LOWER = import.meta.glob('./assets/**/*.{png,jpg,jpeg,webp,svg}', { eager: true, import: 'default' }) as Record<string, string>
@@ -31,8 +32,47 @@ export default function App() {
 
   const pages = chunkArray(phoneImages, 4)
 
+  // Subtle brightness shift of the DarkVeil background after the first page
+  useEffect(() => {
+    const el = pagesRef.current
+    if (!el) return
+
+    const root = document.documentElement
+    const update = () => {
+      const vh = el.clientHeight || window.innerHeight || 1
+      const st = el.scrollTop || 0
+      const start = 0.2 * vh // start easing a bit before page end
+      const end = 1.0 * vh   // complete by the end of the first page
+      let t = (st - start) / Math.max(1, end - start)
+      t = Math.max(0, Math.min(1, t))
+      // smoothstep for a gentle transition
+      t = t * t * (3 - 2 * t)
+      const b0 = 0.50 // brightness on first page
+      const b1 = 0.15 // after first page (more dim)
+      const val = b0 + (b1 - b0) * t
+      root.style.setProperty('--veil-brightness', val.toFixed(3))
+    }
+
+    update()
+    el.addEventListener('scroll', update, { passive: true } as EventListenerOptions)
+    window.addEventListener('resize', update)
+    return () => {
+      el.removeEventListener('scroll', update as any)
+      window.removeEventListener('resize', update)
+    }
+  }, [])
+
   return (
     <div className="app-root">
+      <DarkVeil
+        hueShift={0}
+        noiseIntensity={0.02}
+        scanlineIntensity={0.03}
+        speed={0.45}
+        scanlineFrequency={0.002}
+        warpAmount={0.02}
+        resolutionScale={1}
+      />
       <div className="pages" ref={pagesRef}>
         {/* Page 1: Icon + brand + three-line tagline + caption */}
         <section className="page showcase">
@@ -71,9 +111,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Page 2: Scrolling text reveal page
-            Initially shows only the centered title. As you scroll within the page,
-            the paragraphs reveal word-by-word. */}
+        {/* Page 2: Scrolling text page */}
         <section className="page reveal">
           <div className="reveal-inner">
             <div className="reveal-hero">
