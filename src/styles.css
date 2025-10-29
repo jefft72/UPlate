@@ -16,6 +16,25 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
+
+/* Hide native scrollbars visually but keep scrolling functional
+   - Firefox: scrollbar-width: none
+   - IE/Edge legacy: -ms-overflow-style: none
+   - WebKit: hide via zero width and disable display where supported
+   Targets body and the main scroll containers used in the app (.pages and reveal inner scrollable area).
+*/
+html, body, .pages, .reveal .reveal-inner {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.pages::-webkit-scrollbar,
+.reveal .reveal-inner::-webkit-scrollbar,
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
 .app-root{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:2rem}
 
 /* HERO */
@@ -76,9 +95,9 @@ body{
   .download-btn:hover{transform:none}
 }
 
-/* Full-page snap scrolling */
-.pages{height:100vh;overflow-y:auto;scroll-snap-type:y mandatory}
-.page{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center}
+/* Full-page scrolling (no snap / no animated snapping) */
+.pages{height:100vh;overflow-y:auto;scroll-behavior:auto}
+.page{min-height:100vh;display:flex;align-items:center;justify-content:center}
 
 /* Reveal page */
 .reveal{align-items:stretch}
@@ -127,7 +146,7 @@ body{
 }
 @media(max-width:640px){
   /* Improve readability/scroll for the "Why UPlate" page on small screens */
-  .pages{scroll-snap-type:none; height:auto; overflow-y:visible}
+  .pages{height:auto; overflow-y:visible}
   .page{min-height:auto}
   .reveal .reveal-inner{max-height:84vh; overflow-y:auto; overscroll-behavior:contain; -webkit-overflow-scrolling:touch}
   .reveal-paragraphs{padding:6vh 1rem 8vh; max-width:92%}
