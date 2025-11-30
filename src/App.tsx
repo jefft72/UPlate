@@ -98,7 +98,7 @@ export default function App() {
 
             <p className="app-caption">A smarter way to plan meals in the dining hall</p>
             <div className="download-buttons">
-              <a className="download-btn ios" href="https://testflight.apple.com/join/ENwzn4CK" aria-label="Test on iOS">
+              <a className="download-btn ios" href="https://apps.apple.com/us/app/uplate/id6752828206" aria-label="Install on iOS">
                 <img src={icon} alt="App logo" className="btn-icon" />
                 <span>Test on iOS</span>
               </a>
