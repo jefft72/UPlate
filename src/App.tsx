@@ -100,7 +100,7 @@ export default function App() {
             <div className="download-buttons">
               <a className="download-btn ios" href="https://apps.apple.com/us/app/uplate/id6752828206" aria-label="Install on iOS">
                 <img src={icon} alt="App logo" className="btn-icon" />
-                <span>Test on iOS</span>
+                <span>Install on iOS</span>
               </a>
 
                 <a className="download-btn android" href="https://groups.google.com/g/hello-world-2025" aria-label="Test on Android">
